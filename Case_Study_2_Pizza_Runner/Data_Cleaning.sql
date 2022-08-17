@@ -111,3 +111,37 @@ alter column distance type numeric using distance::numeric;
 alter table pizza_runner.runner_orders
 alter column duration type integer using duration::integer;
 */
+
+-- update 'null' values as NULL in exclusions
+/*
+SELECT exclusions
+FROM pizza_runner.customer_orders
+WHERE exclusions = 'null'
+
+UPDATE pizza_runner.customer_orders
+SET exclusions = NULL
+WHERE exclusions = 'null'
+*/
+
+-- update 'null' values as NULL in extras
+/*
+SELECT extras
+FROM pizza_runner.customer_orders
+WHERE extras = 'null'
+
+UPDATE pizza_runner.customer_orders
+SET extras = NULL
+WHERE extras = 'null'
+*/
+
+-- update 'null' values as NULL in cancellation
+/*
+SELECT cancellation
+FROM pizza_runner.runner_orders
+WHERE cancellation = 'null'
+
+UPDATE pizza_runner.runner_orders
+SET cancellation = NULL
+WHERE cancellation = 'null'
+*/
+
