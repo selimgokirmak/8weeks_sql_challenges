@@ -31,9 +31,23 @@ LIMIT 1
 
 
 -- What was the most common exclusion?
+/*
+WITH exclusions_cte AS (
+	 SELECT *, trim(unnest(string_to_array(exclusions, ',')))::integer exclusions_id
+	 FROM pizza_runner.customer_orders
+	 WHERE exclusions IS NOT NULL )
+	 
+SELECT pt.topping_name, count(*)
+FROM exclusions_cte ec
+JOIN pizza_runner.pizza_toppings pt 
+	ON ec.exclusions_id = pt.topping_id
+GROUP BY pt.topping_name
+ORDER BY 2 DESC
+LIMIT 1
+*/
 
 
-
+-- 
 
 
 
