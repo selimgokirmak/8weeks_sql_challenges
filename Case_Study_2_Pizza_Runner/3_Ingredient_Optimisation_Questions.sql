@@ -5,10 +5,13 @@ WITH toppings_cte AS
 			trim(unnest(string_to_array(toppings, ',')))::integer toppings_id
 	 FROM pizza_runner.pizza_recipes)
 
-SELECT tc.*, pt.topping_name
+SELECT pn.pizza_name, STRING_AGG(pt.topping_name, ', ') std_ingredients
 FROM toppings_cte tc
 JOIN pizza_runner.pizza_toppings pt 
 	ON tc.toppings_id = pt.topping_id
+JOIN pizza_runner.pizza_names pn
+	USING(pizza_id)
+GROUP BY pn.pizza_name
 ORDER BY 1, 2
 */
 
@@ -20,7 +23,7 @@ WITH extras_cte AS
 	 FROM pizza_runner.customer_orders
 	 WHERE extras IS NOT NULL )
 
-SELECT pt.topping_name, count(*)
+SELECT pt.topping_name, COUNT(*)
 FROM extras_cte ec
 JOIN pizza_runner.pizza_toppings pt 
 	ON ec.extras_id = pt.topping_id
