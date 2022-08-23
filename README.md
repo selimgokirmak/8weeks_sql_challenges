@@ -1,3 +1,2 @@
 ## 8weeks_sql_challenges
-
-https://8weeksqlchallenge.com
+This repository holds SQL projects from https://8weeksqlchallenge.com
